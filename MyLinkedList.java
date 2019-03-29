@@ -48,6 +48,9 @@ public class MyLinkedList<T>{
 
   public T removeFront(){
     Node<T> n = start;
+    if(size==1){
+      
+    }
     start = start.next();
     start.setPrev(null);
     return n.getData();
@@ -58,5 +61,19 @@ public class MyLinkedList<T>{
     end = other.end();
     size+= other.size();
     other.clear();
+  }
+
+  public String toString(){
+    if (size == 0){
+      return "[]";
+    }
+    String ans = "[";
+    //transversing list
+    Node current = start;
+    while(current != null){
+      ans += (current.getData()+", ");
+      current = current.next();
+    }
+    return ans.substring(0,ans.length()-2)+"]";
   }
 }

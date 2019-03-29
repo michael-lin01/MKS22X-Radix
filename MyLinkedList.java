@@ -10,14 +10,6 @@ public class MyLinkedList<T>{
     return size;
   }
 
-  public Node<T> start(){
-    return start;
-  }
-
-  public Node<T> end(){
-    return end;
-  }
-
   private Node<T> getNode(int n){
     Node<T> current = start;
     for (int i = 0; i < n; i++){
@@ -48,17 +40,17 @@ public class MyLinkedList<T>{
 
   public T removeFront(){
     Node<T> n = start;
-    if(size==1){
-      
+    if(size>1){
+      start = start.next();
+      start.setPrev(null);
     }
-    start = start.next();
-    start.setPrev(null);
+    size--;
     return n.getData();
   }
 
   public void extend(MyLinkedList<T> other){
-    end.setNext(other.start());
-    end = other.end();
+    end.setNext(other.start);
+    end = other.end;
     size+= other.size();
     other.clear();
   }
@@ -75,5 +67,28 @@ public class MyLinkedList<T>{
       current = current.next();
     }
     return ans.substring(0,ans.length()-2)+"]";
+  }
+
+  public static void main(String args[]){
+    MyLinkedList<Integer> l1 = new MyLinkedList<>();
+    MyLinkedList<Integer> l2 = new MyLinkedList<>();
+    System.out.println(l1);
+    System.out.println(l2);
+    for(int i = 0; i < 20; i++){
+      l1.add(i);
+    }
+    for(int i = 0; i < 20; i++){
+      System.out.println(l1.removeFront());
+    }
+    System.out.println(l1);
+    for(int i = 0; i<20;i++){
+      l1.add(i);
+      l2.add(i*2);
+    }
+    System.out.println(l1);
+    System.out.println(l2);
+    l1.extend(l2);
+    System.out.println(l1);
+    System.out.println(l2);
   }
 }

@@ -22,7 +22,21 @@ public class MyLinkedList<T>{
     size = 0;
   }
 
-  public boolean add(T value){
+  public boolean addFront(T value){
+    Node<T> n = new Node<T>(value);
+    if(size==0){
+      start = n;
+      end = n;
+    }
+    else{
+      start.setPrev(n);
+      n.setNext(start);
+      start = n;
+    }
+    size++;
+    return true;
+  }
+  public boolean addEnd(T value){
     Node<T> n = new Node<T>(value);
     //special case if list is empty - node would be both start and end node
     if (size == 0){
@@ -61,7 +75,7 @@ public class MyLinkedList<T>{
     }
     String ans = "[";
     //transversing list
-    Node current = start;
+    Node<T> current = start;
     while(current != null){
       ans += (current.getData()+", ");
       current = current.next();
@@ -75,15 +89,16 @@ public class MyLinkedList<T>{
     System.out.println(l1);
     System.out.println(l2);
     for(int i = 0; i < 20; i++){
-      l1.add(i);
+      l1.addEnd(i);
+      l1.addFront(i);
     }
-    for(int i = 0; i < 20; i++){
+    for(int i = 0; i < 40; i++){
       System.out.println(l1.removeFront());
     }
     System.out.println(l1);
     for(int i = 0; i<20;i++){
-      l1.add(i);
-      l2.add(i*2);
+      l1.addEnd(i);
+      l2.addFront(i*2);
     }
     System.out.println(l1);
     System.out.println(l2);

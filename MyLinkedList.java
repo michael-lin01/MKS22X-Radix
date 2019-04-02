@@ -63,7 +63,8 @@ public class MyLinkedList<T>{
   }
 
   public void extend(MyLinkedList<T> other){
-    end.setNext(other.start);
+    if(size==0) start = other.start;
+    else end.setNext(other.start);
     end = other.end;
     size+= other.size();
     other.clear();

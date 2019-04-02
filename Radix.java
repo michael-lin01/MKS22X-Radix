@@ -28,14 +28,15 @@ public class Radix{
         System.out.println(temp);
         System.out.println("place: "+front/place%10);
         */
-        buckets[10+front/place%10].addEnd(front);
+        if(front >= 0) buckets[9+front/place%10].addEnd(front);
+        else buckets[9+front/place%10].addFront(front);
       }
       for(int i = 0; i < buckets.length;i++){
         //System.out.println(buckets[i]);
-        System.out.println(temp);
+        //System.out.println(temp);
         if(buckets[i].size()>0) temp.extend(buckets[i]);
       }
-      System.out.println( ""+place+" pass: "+temp);
+      //System.out.println( ""+place+" pass: "+temp);
     }
     for(int i = 0; i < data.length;i++){
       data[i]=temp.removeFront();

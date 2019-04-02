@@ -9,23 +9,42 @@ public class Radix{
       if(i>max) max = i;
     }
 
-    MyLinkedList<Integer>[] buckets = new MyLinkedList[10];
+    MyLinkedList<Integer>[] buckets = new MyLinkedList[19];
+    MyLinkedList<Integer> temp = new MyLinkedList<>();
+
     for(int i = 0; i < buckets.length;i++){
       buckets[i] = new MyLinkedList<Integer>();
     }
+    for(int i = 0; i < data.length;i++){
+      temp.addEnd(data[i]);
+    }
+
     for(int place = 1; max/place > 0; place*=10){
       for(int i = 0; i < data.length;i++){
-        //if number's nth place > 0
-        if(data[i]/(place)>0){
-          //add to appropriate bucket
-          buckets[data[i]/place%10].addEnd(data[i]);
-        }
+        int front = temp.removeFront();
+        //add to appropriate bucket
+        /*
+        System.out.println(front);
+        System.out.println(temp);
+        System.out.println("place: "+front/place%10);
+        */
+        buckets[10+front/place%10].addEnd(front);
       }
+      for(int i = 0; i < buckets.length;i++){
+        //System.out.println(buckets[i]);
+        System.out.println(temp);
+        if(buckets[i].size()>0) temp.extend(buckets[i]);
+      }
+      System.out.println( ""+place+" pass: "+temp);
+    }
+    for(int i = 0; i < data.length;i++){
+      data[i]=temp.removeFront();
     }
   }
 
   public static void main(String args[]){
-    int[] data = new int[10];
+    int[] data = {2,3,5,10,2,15,25};
     radixsort(data);
+    System.out.println(Arrays.toString(data));
   }
 }

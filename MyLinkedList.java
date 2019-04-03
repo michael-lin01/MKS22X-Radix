@@ -1,6 +1,7 @@
 public class MyLinkedList<T>{
   private int size;
   private Node<T> start,end;
+  public Node<T> current;
 
   public MyLinkedList(){
     size = 0;
@@ -20,6 +21,16 @@ public class MyLinkedList<T>{
 
   public void clear(){
     size = 0;
+  }
+
+  public T next(){
+    current = current.next();
+    return current.getData();
+  }
+
+  public void reset(){
+    current = new Node<T>();
+    current.setNext(start);
   }
 
   public boolean addFront(T value){

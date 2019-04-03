@@ -3,6 +3,8 @@ public class Node<T>{
   private T data;
   private Node<T> next, prev;
 
+  public Node(){}
+    
   public Node(T data){
     this.data = data;
   }

@@ -20,11 +20,14 @@ public class Radix{
     }
 
     for(int place = 1; max/place > 0; place*=10){
+      temp.reset();
       for(int i = 0; i < data.length;i++){
-        int n = temp.removeFront();
+        int n = temp.next();
+        //System.out.println(n);
         //add to appropriate bucket
         buckets[9+n/place%10].addEnd(n);
       }
+      temp.clear();
       for(int i = 0; i < buckets.length;i++){
         //System.out.println("bucket "+i+": "+buckets[i]);
         if(buckets[i].size()>0) {

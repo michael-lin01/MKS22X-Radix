@@ -4,6 +4,7 @@ public class Radix{
   //extend array to include negatives
   @SuppressWarnings("unchecked")
   public static void radixsort(int[] data){
+    if(data.length==0) return;
     int max = Math.abs(data[0]);
     for(int i: data){
       if(Math.abs(i)>max) max = Math.abs(i);
@@ -42,9 +43,10 @@ public class Radix{
   }
 
   public static void main(String args[]){
-    System.out.println(Math.pow(-1,(1+(int)(Math.random()*2))));
     int[] data = {2,3,5,10,2,15,25,-12,-19,-99,-109,-20};
     radixsort(data);
     System.out.println(Arrays.toString(data));
+    int[] data2 = {};
+    radixsort(data2);
   }
 }
